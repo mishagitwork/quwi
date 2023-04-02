@@ -26,8 +26,7 @@ jobs:
         with:
           command: |
             cd /var/www/quwi/deployment
-            docker-compose -f build
-            docker-compose -f up -d
+            docker-compose up --build -d
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
