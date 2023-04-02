@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  QUWI:
+    container_name: QUWI
+    build:
+      context: ../
+      dockerfile: ./deployment/Dockerfile
+    image: quwi
+    restart: always
+    ports:
+      - 7740:4000

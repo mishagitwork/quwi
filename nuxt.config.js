@@ -1,7 +1,11 @@
 export default {
+  server: {
+    port: 4000,
+    host: '0.0.0.0',
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'quwi',
+    title: 'Quwi Test App',
     htmlAttrs: {
       lang: 'en',
     },
@@ -18,7 +22,10 @@ export default {
   css: ['~assets/styles/reset.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/repository.js' },
+    { src: '~/plugins/nuxt-init.client.js' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -32,7 +39,17 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/axios'],
+
+  axios: {
+    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
+    baseURL: '/',
+    proxy: true,
+  },
+
+  proxy: {
+    '/v2/': 'https://api.quwi.com',
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
